@@ -17,13 +17,10 @@ html, body {
 <div class="row-fluid">
 <div class='span4 well'>
  <div>
-  <p>
+  <form id="target">
    <label for="messageText">Message</label> <input type="text"
     id="messageText" />
-  </p>
-  <p>
-   <button id="sendButton">Send</button>
-  </p>
+    </form>
  </div>
  <div>
   <ul id="messages">
@@ -96,10 +93,12 @@ html, body {
                             .append(
                                 '<li>Disconnected from the server.</li>');
                       });
-              $('#sendButton').bind('click', function() {
+              
+              $('#target').submit(function(){
                 var message = $('#messageText').val();
                 socket.emit('message', {data:message});
                 $('#messageText').val('');
+                return false;
               });
             });
   </script>
